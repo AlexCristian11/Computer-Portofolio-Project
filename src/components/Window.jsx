@@ -9,7 +9,8 @@ function Window(props) {
     const name = props.name;
     const dataProjects = props.data.projects;
     const dataAbout = props.data.aboutMe;
-    const image = process.env.PUBLIC_URL+`/img/${dataAbout.img}`;
+    const dataSkills = props.data.skills;
+    const image = process.env.PUBLIC_URL+`/img/${dataAbout.img}`;   
 
   return (
     <>
@@ -27,9 +28,13 @@ function Window(props) {
             {name === "PROJECTS" &&
                 <div className="projects-container">
                     {dataProjects.map((project) =>
-                    <div className="main-content" key={project.id}>
+                    <div className="main-content" key={project.id} style={{
+                        backgroundImage: process.env.PUBLIC_URL+`/img/${project.coverImg}`,
+                        backgroundRepeat: 'no-repeat',
+                    }}>
                         <h3>{project.name}</h3>
                         <p>{project.description}</p>
+                        <a href={project.url} alt="Github link" target="_blank" rel="noopener noreferrer"><FaGithub size="30px" className="icon"/></a>
                     </div>
                     )}
                 </div>
@@ -42,18 +47,21 @@ function Window(props) {
                 </div>
             }
             {name === "SKILLS" && 
-                <div className="skills">
-                    <FaHtml5 size="50px" className="icon" color="#fff"/>
-                    <FaCss3 size="50px" className="icon" color="#fff"/>
-                    <FaGithub size="50px" className="icon" color="#fff"/>
-                    <FaChrome size="50px" className="icon" color="#fff"/>
-                    <FaTerminal size="50px" className="icon" color="#fff"/>
-                    <FaFigma size="50px" className="icon" color="#fff"/>
-                    <FaUniversalAccess size="50px" className="icon" color="#fff"/>
-                    <FaBootstrap size="50px" className="icon" color="#fff"/>
-                    <FaDatabase size="50px" className="icon" color="#fff"/>
-                    <FaReact size="50px" className="icon" color="#fff"/>
-                    <SiJavascript size="50px" className="icon" color="#fff"/>
+                <div className="skills-container">
+                <p>{dataSkills.description}</p>
+                    <div className="skills">
+                        <FaHtml5 size="50px" className="icon" color="#fff"/>
+                        <FaCss3 size="50px" className="icon" color="#fff"/>
+                        <FaGithub size="50px" className="icon" color="#fff"/>
+                        <FaChrome size="50px" className="icon" color="#fff"/>
+                        <FaTerminal size="50px" className="icon" color="#fff"/>
+                        <FaFigma size="50px" className="icon" color="#fff"/>
+                        <FaUniversalAccess size="50px" className="icon" color="#fff"/>
+                        <FaBootstrap size="50px" className="icon" color="#fff"/>
+                        <FaDatabase size="50px" className="icon" color="#fff"/>
+                        <FaReact size="50px" className="icon" color="#fff"/>
+                        <SiJavascript size="50px" className="icon" color="#fff"/>
+                    </div>
                 </div>
             }
         </Frame>
@@ -117,18 +125,36 @@ const Frame = styled.div`
 
     .projects-container {
         display: flex;
-
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .main-content {
         color: black;
-        height: 150px;
-        width: 300px;
+        height: 180px;
+        width: 350px;
         background-color: white;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin: 0 30px 50px 30px;
+        border-radius: 3px;
+    }
+
+    .main-content p {
+        padding: 0 5px 0 15px;
+        font-size: .95rem;
+    }
+
+    .icon {
+        color: black;
+    }
+    .icon:hover {
+        color: #AC0A00;
+    }
+    .icon:focus {
+        color: #AC0A00;
     }
 
     ${'' /* About me Window styles */}
@@ -152,21 +178,23 @@ const Frame = styled.div`
             padding: 20px;
             font-size: 1.1rem;
         }
+    }
 
         ${'' /* Skills Window styles*/}
 
+        .skills-container p{
+            color: white;
+            padding: 2rem;
+            font-size: 1.2rem;
+        }
+
         .skills {
-            width: 60%;
             margin: 0 auto;
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
             padding: 30px 0 70px 0;
         }
-        .icon {
-            margin-left: 20px;
-        }
-    }
 `
 
 export default Window
