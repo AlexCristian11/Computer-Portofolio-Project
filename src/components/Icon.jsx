@@ -1,16 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AiFillFolderOpen } from 'react-icons/ai';
-import Window from './Window';
+import { AiFillFolderOpen, AiFillFolder, AiFillFolderAdd } from 'react-icons/ai';
+
+
 
 function Icon(props) {
 
-  
+  const name = props.name;
 
   return (
     <IconStyle onDoubleClick={props.toggle}>
-        <AiFillFolderOpen size="60" className="icon"/>
-        <h4 className="title">{props.name}</h4>
+      {name === "PROJECTS" && 
+        <AiFillFolderAdd size="60" className="icon" onDoubleClick={props.change}/>
+      }
+      {name === "ABOUT_ME" && 
+        <AiFillFolderOpen size="60" className="icon" onDoubleClick={props.change}/>
+      }
+      {name === "SKILLS" && 
+        <AiFillFolder size="60" className="icon" onDoubleClick={props.change}/>
+      }
+      <h4 className="title">{props.name}</h4>
     </IconStyle>
   )
 }

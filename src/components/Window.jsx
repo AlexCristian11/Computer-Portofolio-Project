@@ -1,16 +1,22 @@
 import React from 'react'
 import styled from 'styled-components';
+import { FaHtml5, FaCss3, FaGithub, FaChrome, FaTerminal, FaFigma, FaUniversalAccess, FaBootstrap, FaDatabase, FaReact} from 'react-icons/fa';
+import { SiJavascript } from 'react-icons/si';
 
 function Window(props) {
 
     const show = props.show;
+    const name = props.name;
+    const dataProjects = props.data.projects;
+    const dataAbout = props.data.aboutMe;
+    const image = process.env.PUBLIC_URL+`/img/${dataAbout.img}`;
 
   return (
     <>
     {show &&
         <Frame>
             <div className="bar">
-                <div className="circle red"></div>
+                <div className="circle red" onClick={props.close}></div>
                 <div className="circle yellow"></div>
                 <div className="circle green"></div>
                 <div className="line"></div>
@@ -18,6 +24,38 @@ function Window(props) {
                 <div className="line"></div>
             </div>
             <div className="separation"># # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # </div>
+            {name === "PROJECTS" &&
+                <div className="projects-container">
+                    {dataProjects.map((project) =>
+                    <div className="main-content" key={project.id}>
+                        <h3>{project.name}</h3>
+                        <p>{project.description}</p>
+                    </div>
+                    )}
+                </div>
+            }
+            {name === "ABOUT ME" &&
+                <div className="about-container">
+                    <h2>About Me</h2>
+                    <img src={image} alt="" />
+                    <p>{dataAbout.description}</p>
+                </div>
+            }
+            {name === "SKILLS" && 
+                <div className="skills">
+                    <FaHtml5 size="50px" className="icon" color="#fff"/>
+                    <FaCss3 size="50px" className="icon" color="#fff"/>
+                    <FaGithub size="50px" className="icon" color="#fff"/>
+                    <FaChrome size="50px" className="icon" color="#fff"/>
+                    <FaTerminal size="50px" className="icon" color="#fff"/>
+                    <FaFigma size="50px" className="icon" color="#fff"/>
+                    <FaUniversalAccess size="50px" className="icon" color="#fff"/>
+                    <FaBootstrap size="50px" className="icon" color="#fff"/>
+                    <FaDatabase size="50px" className="icon" color="#fff"/>
+                    <FaReact size="50px" className="icon" color="#fff"/>
+                    <SiJavascript size="50px" className="icon" color="#fff"/>
+                </div>
+            }
         </Frame>
     }
     </>
@@ -26,7 +64,7 @@ function Window(props) {
 
 const Frame = styled.div`
     height: 500px;
-    width: 800px;
+    width: 900px;
     background-color: #000;
     border-radius: 5px;
     position: absolute;
@@ -43,19 +81,20 @@ const Frame = styled.div`
     }
 
     .circle {
-        width: 10px;
-        height: 10px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
     }
 
     .red {
-        background-color: red;
+        background-color: #E83843;
+        cursor: pointer;
     }
     .yellow {
-        background-color: yellow;
+        background-color: #EBC456;
     }
     .green {
-        background-color: green;
+        background-color: #2DBA3B;
     }
 
     .line {
@@ -72,6 +111,61 @@ const Frame = styled.div`
         color: white;
         margin: 10px;
         text-align: center;
+    }
+
+    ${'' /* Project Window styles */}
+
+    .projects-container {
+        display: flex;
+
+    }
+
+    .main-content {
+        color: black;
+        height: 150px;
+        width: 300px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    ${'' /* About me Window styles */}
+
+    .about-container {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h2 {
+            text-align: center;
+            margin: 10px 0 10px 0;
+        }
+        img {
+            width: 180px;
+            height: 200px;
+            border-radius: 3px;
+        }
+        p {
+            padding: 20px;
+            font-size: 1.1rem;
+        }
+
+        ${'' /* Skills Window styles*/}
+
+        .skills {
+            width: 60%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 30px 0 70px 0;
+        }
+        .icon {
+            margin-left: 20px;
+        }
     }
 `
 

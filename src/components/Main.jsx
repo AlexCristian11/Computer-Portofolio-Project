@@ -7,25 +7,35 @@ import Window from './Window';
 function Main() {
 
   const [dataState, setDataState] = useState(data);
-
-  // console.log(dataState);
-
   const [show, setShow] = useState(false);
+  const [name, setName] = useState("");
 
   function toggleShow() {
     setShow(prevState => !prevState);
   }
 
-  console.log(show);
+  function closeWindow() {
+    setShow(prevState => false);
+  }
+
+  function changeToProjects() {
+    setName("PROJECTS");
+  }
+  function changeToAbout() {
+    setName("ABOUT ME");
+  }
+  function changeToSkills() {
+    setName("SKILLS");
+  }
 
 
 
   return (
     <MainStyle>
-        <Icon name="PROJECTS" toggle={toggleShow} />
-        <Icon name="ABOUT_ME" toggle={toggleShow}/>
-        <Icon name="SKILLS" toggle={toggleShow}/>
-        <Window name="PROJECTS" show={show}/>
+        <Icon name="PROJECTS" toggle={toggleShow} show={show} data={dataState} change={changeToProjects}/>
+        <Icon name="ABOUT_ME" toggle={toggleShow} show={show} data={dataState} change={changeToAbout}/>
+        <Icon name="SKILLS" toggle={toggleShow} show={show} data={dataState} change={changeToSkills}/>
+        <Window name={name} show={show} data={dataState} close={closeWindow}/>
     </MainStyle>
   )
 }
