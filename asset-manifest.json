@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Computer-Portofolio-Project/static/css/main.80cc639d.css",
+    "main.js": "/Computer-Portofolio-Project/static/js/main.1baa4061.js",
+    "static/js/787.71e672d5.chunk.js": "/Computer-Portofolio-Project/static/js/787.71e672d5.chunk.js",
+    "index.html": "/Computer-Portofolio-Project/index.html",
+    "main.80cc639d.css.map": "/Computer-Portofolio-Project/static/css/main.80cc639d.css.map",
+    "main.1baa4061.js.map": "/Computer-Portofolio-Project/static/js/main.1baa4061.js.map",
+    "787.71e672d5.chunk.js.map": "/Computer-Portofolio-Project/static/js/787.71e672d5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.80cc639d.css",
+    "static/js/main.1baa4061.js"
+  ]
+}
