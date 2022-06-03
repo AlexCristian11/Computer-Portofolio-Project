@@ -34,7 +34,7 @@ function Window(props) {
                     }}>
                         <h3>{project.name}</h3>
                         <p>{project.description}</p>
-                        <a href={project.url} alt="Github link" target="_blank" rel="noopener noreferrer"><FaGithub size="30px" className="icon"/></a>
+                        <a href={project.url} alt="Github link" target="_blank" rel="noopener noreferrer"><FaGithub size="30px" className="icon-gh"/></a>
                     </div>
                     )}
                 </div>
@@ -147,13 +147,14 @@ const Frame = styled.div`
         font-size: .95rem;
     }
 
-    .icon {
-        color: black;
+    .icon-gh {
+        color: #000;
     }
-    .icon:hover {
+
+    .icon-gh:hover {
         color: #AC0A00;
     }
-    .icon:focus {
+    .icon-gh:focus {
         color: #AC0A00;
     }
 
@@ -194,6 +195,29 @@ const Frame = styled.div`
             justify-content: space-around;
             flex-wrap: wrap;
             padding: 30px 0 70px 0;
+        }
+
+        .icon {
+            animation: animate 5s infinite linear;
+        }
+
+        @keyframes animate {
+            0%,
+            100% {
+                color: deeppink;
+            }
+
+            25% {
+                color: deepskyblue;
+            }
+
+            50% {
+                color: lawngreen;
+            }
+
+            75% {
+                color: yellow;
+            }
         }
 `
 
