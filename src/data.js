@@ -23,7 +23,7 @@ const data = {
         }
     ],
     "aboutMe": {
-        "description": "My name is Popescu Alexandru-Cristian and I am a student from Romania! I am a 20 yrs old very excited to expand my knowledge and meet new people from whom I can learn new things. I study at the Romanian-American University in Bucharest, School of Computer Science for Economics. I started learning web development about 2 years ago and I loved it ever since. I love challenges and puzzles I have to solve, I am determined and eager to solve the problem no matter how hard it is. I am creative and love to turn a website into art and bring new and cool ideas to the table, even if they might be a bit exentric sometimes 😄.",
+        "description": "My name is Popescu Alexandru-Cristian and I am a student from Romania! I am a 20 yrs old very excited to expand my knowledge and meet new people from whom I can learn new things. I study at the Romanian-American University in Bucharest, School of Computer Science for Economics. I started learning web development about 2 years ago and I loved it ever since. I love challenges and puzzles I have to solve, I am determined and eager to solve the problem no matter how hard it is. I am creative and love to turn a website into art and bring new and cool ideas to the table, even if they might be a bit eccentric sometimes 😄.",
         "img": "photo.jpeg"
     },
     "skills": {
