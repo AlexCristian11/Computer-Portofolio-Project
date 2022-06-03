@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# Computer Portofolio Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About
 
-## Available Scripts
+This project is meant to be a personal portofolio, but should give you the feeling of using an old computer desktop. You will be presented with an simple desktop with a few icons that, when clicked will open a window respective to the icon clicked. 
 
-In the project directory, you can run:
+## Main.jsx
 
-### `npm start`
+The Main.jsx file contains a state that has the data from “data.js” stored, another state that keeps track of the name of the icon clicked in order to know what window needs to be rendered. And 5 functions:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Toggle the visibility of the window
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```jsx
+function toggleShow() {
+    setShow(prevState => !prevState);
+  }
+```
 
-### `npm test`
+Closes the window when the red dot is clicked
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```jsx
+function closeWindow() {
+    setShow(prevState => false);
+  }
+```
 
-### `npm run build`
+The 3 functions with which the name is changed and the correct window will be rendered
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```jsx
+function changeToProjects() {
+    setName("PROJECTS");
+  }
+  function changeToAbout() {
+    setName("ABOUT ME");
+  }
+  function changeToSkills() {
+    setName("SKILLS");
+  }
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The JSX code: 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```jsx
+<Icon name="PROJECTS" toggle={toggleShow} show={show} data={dataState} change={changeToProjects}/>
+<Icon name="ABOUT_ME" toggle={toggleShow} show={show} data={dataState} change={changeToAbout}/>
+<Icon name="SKILLS" toggle={toggleShow} show={show} data={dataState} change={changeToSkills}/>
+<Window name={name} show={show} data={dataState} close={closeWindow}/>
+```
 
-### `npm run eject`
+## Icon.jsx
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The Icon component is reused and so it has some logic on how to display each icon. I used conditional rendering to achieve this: 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```jsx
+{name === "PROJECTS" && 
+   <AiFillFolderAdd size="60" className="icon" onDoubleClick={props.change}/>
+}
+{name === "ABOUT_ME" && 
+   <AiFillFolderOpen size="60" className="icon" onDoubleClick={props.change}/>
+}
+{name === "SKILLS" && 
+   <AiFillFolder size="60" className="icon" onDoubleClick={props.change}/>
+}
+<h4 className="title">{props.name}</h4>
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Window.jsx
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The biggest component, with the most work done for styling and rendering. 
 
-## Learn More
+For each section I used conditional rendering, so that if the name corresponds for example to ‘projects’, the projects section will render.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```jsx
+{name === "PROJECTS" &&
+   <div className="projects-container">
+        {dataProjects.map((project) =>
+           <div className="main-content" key={project.id} style={{
+               backgroundImage: process.env.PUBLIC_URL+`/img/${project.coverImg}`,
+               backgroundRepeat: 'no-repeat',
+            }}>
+               s<h3>{project.name}</h3>
+               <p>{project.description}</p>
+               <a href={project.url} alt="Github link" target="_blank" rel="noopener noreferrer"><FaGithub size="30px" className="icon-gh"/></a>
+           </div>
+         )}
+    </div>
+}
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+// for some reason, the background image doesn't work so it doesn't affect the overall look
+```
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The same logic applies to the other sections, each of them having a different styling and placement of elements.
